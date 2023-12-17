@@ -1,7 +1,7 @@
 function getRepo() {
   let webPageLink = prompt(
     "Enter the webpage link",
-    "https://chrismillette.github.io/Assignment3/"
+    "https://mfraht.github.io/DoggyDaycare/"
   );
   userName = webPageLink.split("//")[1].split(".")[0];
   //   console.log("webPageLink", userName);
