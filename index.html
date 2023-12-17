@@ -13,10 +13,15 @@
 </head>
 <body>
     <h1>Get the Git Repo from the Github webpage link</h1>
-    <button id="webpage" onclick="getRepo()">Enter the webpage link</button>
+    <label for="webpage">Enter the webpage link</label>
+    <input type="text" id="webpage" value="https://mfraht.github.io/DoggyDaycare/" style="width: 300px;">
+    <button onclick="getRepo()">Get the Git Repo</button>
     <br>
     <span id="repoLinkSpan"></span>
     <br>
     <button onclick="copyRepoLink()">Copy Repo Link</button>
+    <br>
+    <br>
+    <button onclick="clearPage()">Clear</button>
 </body>
 </html>

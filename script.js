@@ -1,8 +1,10 @@
 function getRepo() {
-  let webPageLink = prompt(
-    "Enter the webpage link",
-    "https://mfraht.github.io/DoggyDaycare/"
-  );
+  let webPageLink = document.getElementById("webpage").value
+  if (webPageLink == ""){
+    alertMessage = "Please Enter the GitHub Web Page Link!"
+    showAlert(alertMessage);
+    return;
+  }
   userName = webPageLink.split("//")[1].split(".")[0];
   //   console.log("webPageLink", userName);
   repoName = webPageLink.split("//")[1].split("/")[1];
@@ -11,7 +13,6 @@ function getRepo() {
   //   console.log("repoLink", repoLink);
   var repoLinkElement = document.createElement("h2");
   // var repoLinkElement = document.getElementById("repoLink");
-  console.log("webPageLink", repoLinkElement);
 
   repoLinkElement.id = "repoLink";
   repoLinkElement.innerHTML =
@@ -27,29 +28,50 @@ function getRepo() {
 
 function copyRepoLink() {
   // Create a temporary input element
-  var tempInput = document.createElement("input");
-  // Set its value to the repoLink
-  tempInput.value = repoLink;
-  // Append it to the document
-  document.body.appendChild(tempInput);
-  // Select its content
-  tempInput.select();
-  // Execute the copy command
-  document.execCommand("copy");
-  // Remove it from the document
-  document.body.removeChild(tempInput);
-  // Alert the user that the text has been copied (optional)
-  var messageDiv = document.createElement("div");
-  messageDiv.innerHTML = "Repo Link copied to clipboard!";
-  messageDiv.style.cssText =
-    "position: fixed; top: 300px; left: 50%; transform: translateX(-50%); background: #4CAF50; color: white; padding: 20px; border-radius: 5px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);";
+  if (repoLink != undefined){
+    var tempInput = document.createElement("input");
+    // Set its value to the repoLink
+    tempInput.value = repoLink;
+    // Append it to the document
+    document.body.appendChild(tempInput);
+    // Select its content
+    tempInput.select();
+    // Execute the copy command
+    document.execCommand("copy");
+    // Remove it from the document
+    document.body.removeChild(tempInput);
+    // Alert the user that the text has been copied (optional)
+    alertMessage = "Repo Link copied to clipboard!"
+    showAlert(alertMessage);
+}
+else{
+    alertMessage = "Please Enter the GitHub Web Page Link!"
+    showAlert(alertMessage);
+    return;
+}
+}
 
-  // Append it to the document
-  document.body.appendChild(messageDiv);
+function showAlert(alertMessage) {
+    var messageDiv = document.createElement("div");
+    messageDiv.innerHTML = alertMessage;
+    messageDiv.style.cssText =
+        "position: fixed; top: 300px; left: 50%; transform: translateX(-50%); background: #4CAF50; color: white; padding: 20px; border-radius: 5px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);";
 
-  // Close the message after 5 seconds
-  setTimeout(function () {
-    // Remove the message from the document
-    document.body.removeChild(messageDiv);
-  }, 2000);
+    // Append it to the document
+    document.body.appendChild(messageDiv);
+
+    // Close the message after 5 seconds
+    setTimeout(function () {
+        // Remove the message from the document
+        document.body.removeChild(messageDiv);
+    }, 2000);
+}
+
+function clearPage() {
+    let webPageLink = document.getElementById("webpage")
+    let repoLinkSpan = document.getElementById("repoLinkSpan")
+    webPageLink.value = null
+    repoLinkSpan.innerHTML = null
+    repoLink = null
+
 }
